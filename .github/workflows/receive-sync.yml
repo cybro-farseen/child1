@@ -25,8 +25,8 @@ jobs:
           git remote add base_repo https://github.com/cybro-farseen/base.git
           git fetch base_repo
 
-          # Merging main from base into current child branch (dev or live)
-          git merge base_repo/main --allow-unrelated-histories -m "Auto-sync from Base/Main"
+          # This strategy '-X theirs' tells Git: "If there is a conflict, use the Base repo's version"
+          git merge base_repo/main --allow-unrelated-histories -X theirs -m "Auto-sync from Base"
 
           # Push the merge back to child repo
           git push origin ${{ github.event.client_payload.branch }}
